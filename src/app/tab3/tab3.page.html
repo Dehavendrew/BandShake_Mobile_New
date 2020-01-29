@@ -1,9 +1,22 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Three
+      BlueTooth Connect
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-grid>
+  <ion-row>
+    <ion-col text-center>
+      <h3>Central Connector</h3>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col text-center>
+      <ion-button (click)="connect()">Search for Devices</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

@@ -13,6 +13,7 @@ export class Tab1Page {
 
   user: any
   photoURL: any
+  shakelist: any
 
   constructor(
     public firebaseService: FirebaseService,
@@ -22,7 +23,6 @@ export class Tab1Page {
 
     firebase.auth().onAuthStateChanged((user) => {
         this.updatePage(user)
-        console.log(user)
     })
   }
 
@@ -52,6 +52,7 @@ export class Tab1Page {
     if(this.user){
       this.firebaseService.getImage(user.photoURL).then(url =>
         this.photoURL = url)
+      this.firebaseService.getShakes(user.uid).then(shakes => this.shakelist = shakes)
     }
     else {
       this.photoURL = null;

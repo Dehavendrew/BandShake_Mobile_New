@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireStorage } from 'angularfire2/storage';
+import { AngularFireDatabaseModule } from 'angularfire2/database'
 import * as firebase from 'firebase/app';
 
 @Injectable({
@@ -42,11 +43,11 @@ export class FirebaseService {
           (res) => {
             resolve(res)
           },
-          err => reject(err)
+          err => {reject(err)
+          }
         )
       })
     }
-
 
 
  doRegister(value){
@@ -101,6 +102,12 @@ export class FirebaseService {
       storageRef.child(imageURI).getDownloadURL().then(url => {
         resolve(url)}
       ), (err) => alert(err)
+    })
+  }
+
+  getShakes(user){
+    return new Promise<any>((resolve, reject) => {
+      this.afs.collection('shakes', ref => ref.where('user1', '==', user)).valueChanges().subscribe(val => resolve(val))
     })
   }
 

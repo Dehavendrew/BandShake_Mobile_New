@@ -1,31 +1,57 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title *ngIf="user; else elseBlock">{{user.displayName}} </ion-title>
-    <ng-template #elseBlock>
-      <ion-title> Login </ion-title>
-    </ng-template>
-    <ion-avatar *ngIf="user">
-      <img src={{photoURL}} />
-    </ion-avatar>
+    <ion-grid>
+      <ion-row class="ion-float-left">
+        <ion-col>
+          <ion-avatar>
+            <img src="\..\assets\icon\greenlogo.PNG" />
+          </ion-avatar>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-float-right">
+        <ion-col>
+          <ion-avatar *ngIf="user; else elseBlock">
+            <img src={{photoURL}} />
+          </ion-avatar>
+          <ng-template #elseBlock>
+            <ion-title> Login </ion-title>
+          </ng-template>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
+  <ion-grid>
+     <ion-row justify-content-center align-items-center>
+       <ion-button class="ion-justify-content-center" (click)="toRegister()">Register</ion-button>
+       <ion-button class="ion-justify-content-center" (click)="toLogin()">Login</ion-button>
+       <ion-button class="ion-justify-content-center" (click)="doLogout()">Logout</ion-button>
+     </ion-row>
+   </ion-grid>
 </ion-header>
 
 <ion-content>
-   <ion-grid style="height: 100%">
-   <ion-row justify-content-center align-items-center style="height: 20%">
-     <ion-button class="ion-justify-content-center" (click)="addDataEntry()">Add to Database</ion-button>
-   </ion-row>
-   <ion-row justify-content-center align-items-center style="height: 20%">
-     <ion-button class="ion-justify-content-center" (click)="toRegister()">Register User</ion-button>
-   </ion-row>
-   <ion-row justify-content-center align-items-center style="height: 20%">
-     <ion-button class="ion-justify-content-center" (click)="toLogin()">Login User</ion-button>
-   </ion-row>
-   <ion-row justify-content-center align-items-center style="height: 20%">
-     <ion-button class="ion-justify-content-center" (click)="doLogout()">Logout</ion-button>
-   </ion-row>
-   <ion-row justify-content-center align-items-center style="height: 20%">
-     <ion-button class="ion-justify-content-center" (click)="shakeButton()">Add Shake</ion-button>
-   </ion-row>
- </ion-grid>
+  <div *ngFor="let shake of shakelist">
+    <ion-item>
+      <div class="post-box">
+        <ion-label>
+          <ion-grid>
+            <ion-row class="ion-float-left">
+              <ion-avatar class="tiny-photo">
+                <img src={{photoURL}} />
+              </ion-avatar>
+            </ion-row>
+            <ion-row class="ion-float-right">
+              <ion-avatar class="tiny-photo">
+                <img src="\..\assets\icon\greenlogo.PNG" />
+              </ion-avatar>
+            </ion-row>
+          </ion-grid>
+        </ion-label>
+        {{shake.user1}} met {{shake.user2}} at the {{shake.event}}
+        <div class="muted-text">
+          Wednesday, Jan 10 2019
+        </div>
+      </div>
+    </ion-item>
+  </div>
 </ion-content>
